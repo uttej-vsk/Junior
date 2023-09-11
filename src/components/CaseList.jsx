@@ -1,6 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Button } from "@/interface/ui/button";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/interface/ui/table";
 
 export const CaseList = () => {
   const [userData, setUserData] = useState([]);
@@ -23,32 +32,40 @@ export const CaseList = () => {
   }, []);
 
   const userDetails = userData.map((data) => (
-    <tr key={data.id} className='overflow-x-auto'>
-      <td className='px-24 py-4'>{data.id}</td>
-      <td className='px-24 py-4'>{data.id}</td>
-      <td className='px-24 py-4'>{data.email}</td>
-      <td className='px-24 py-4'>{data.first_name}</td>
+    <TableRow key={data.id} className='overflow-x-auto h-12'>
+      <TableCell className='border-b border-r text-center'>
+        {data.id}
+      </TableCell>
+      <TableCell className='border-b border-r text-center'>
+        {data.id}
+      </TableCell>
+      <TableCell className='border-b border-r text-center'>
+        {data.email}
+      </TableCell>
+      <TableCell className='border-b border-r  text-center'>
+        {data.first_name}
+      </TableCell>
 
-      <td className='px-10 py-4 text-white-600 rounded-lg border-solid border-white-600'>
-        <button className='py-4 text-white-600 rounded-lg border-solid border-white-600'>
+      <TableCell className='text-center'>
+        <Button className=' py-4 text-white-600 rounded-lg border-solid border-white-600 bg-slate-100 h-2'>
           <Link to='/dashboard/editCase'>View</Link>
-        </button>
-        <button className='ml-4 py-4 text-white-600 rounded-lg border-solid border-white-600'>
+        </Button>
+        <Button className='ml-4 py-4 text-white-600 rounded-lg border-solid border-white-600 bg-slate-100 h-2'>
           <Link to='/dashboard/editCase'>Edit</Link>
-        </button>
-      </td>
-    </tr>
+        </Button>
+      </TableCell>
+    </TableRow>
   ));
 
   return (
     <>
       <div className='flex justify-evenly items-center mt-20'>
         <h1 className='mr-4'>Case List</h1>
-        <button>Add Case</button>
+        <Button className='bg-slate-200'>Add Case</Button>
       </div>
       {loading && (
         <div className='min-h-screen flex justify-center items-center'>
-          <button
+          <Button
             className='bg-indigo-500 flex items-center justify-center text-white px-4 py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed'
             disabled
           >
@@ -63,33 +80,33 @@ export const CaseList = () => {
               />
             </svg>
             Loading in 2 secs...
-          </button>
+          </Button>
         </div>
       )}
-      <div className=' w-3/4 flex overflow-x-auto mt-20 ml-48'>
-        <table className='w-full text-sm text-left text-white-500 dark:text-white-400'>
-          <thead className='text-xs text-white-700 uppercase '>
-            <tr className='bg-white-50 dark:bg-white-700 bg-gray-400 text-black'>
-              <th scope='col' className='p-20 py-3'>
+      <div>
+        <Table className='table-auto mx-auto w-3/4 ml-48 mt-20 border overflow-x-auto'>
+          <TableHeader>
+            <TableRow className='h-16'>
+              <TableHead className='border-r text-center'>
                 ID
-              </th>
-              <th scope='col' className='p-20 py-3'>
+              </TableHead>
+              <TableHead className='border-r text-center'>
                 Case No
-              </th>
-              <th scope='col' className='p-20 py-3'>
+              </TableHead>
+              <TableHead className=' border-r text-center'>
                 Case Type
-              </th>
-              <th scope='col' className='p-20 py-3'>
+              </TableHead>
+              <TableHead className=' border-r text-center'>
                 Status
-              </th>
-              <th scope='col' className='p-20 py-3'>
+              </TableHead>
+              <TableHead className='border-r text-center '>
                 Actions
-              </th>
-            </tr>
-          </thead>
+              </TableHead>
+            </TableRow>
+          </TableHeader>
 
-          <tbody>{userDetails}</tbody>
-        </table>
+          <TableBody>{userDetails}</TableBody>
+        </Table>
       </div>
     </>
   );

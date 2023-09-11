@@ -4,13 +4,14 @@ import axios from "axios";
 import {
   Container,
   Paper,
-  Button,
   InputAdornment,
   IconButton,
   InputLabel,
   OutlinedInput,
   FormControl,
 } from "@mui/material";
+
+import { Button } from "@/interface/ui/button";
 
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -112,10 +113,9 @@ function Login() {
           </FormControl>
 
           <Button
-            variant='outlined'
-            type='submit'
+            variant='outline'
+            className='bg-sky-500 text-white'
             onClick={handleSubmit}
-            sx={{ m: 1 }}
           >
             Sign In
           </Button>

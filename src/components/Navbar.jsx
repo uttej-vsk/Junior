@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useAuth } from "./auth";
+import { Button } from "@/interface/ui/button";
 
 export const Navbar = () => {
   const location = useLocation();
@@ -52,9 +53,12 @@ export const Navbar = () => {
             <b>Welcome, {auth.user.first_name}!</b>
           </span>
           <NavLink to='/'>
-            <button onClick={auth.logout} className='mx-2'>
+            <Button
+              onClick={auth.logout}
+              className='mx-2 bg-slate-100 hover:bg-gray-500'
+            >
               Logout
-            </button>
+            </Button>
           </NavLink>
         </div>
       )}
